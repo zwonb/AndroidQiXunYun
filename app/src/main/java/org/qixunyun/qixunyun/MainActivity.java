@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 
 import com.youth.banner.Banner;
 
@@ -83,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
             list.add(bean);
         }
         return list;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_scan_menu, menu);
+        return true;
     }
 }
 
