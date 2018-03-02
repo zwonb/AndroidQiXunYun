@@ -18,5 +18,6 @@ public class MainHolder extends SuperViewHolder<MainBean> {
     @Override
     protected void setDate(MainBean bean) {
         setText(R.id.item_main_text, bean.getText());
+        setImageResource(R.id.item_main_img, bean.getImg());
     }
 }

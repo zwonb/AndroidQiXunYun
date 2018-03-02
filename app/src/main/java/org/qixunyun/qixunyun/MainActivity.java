@@ -8,7 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.youth.banner.Banner;
 
@@ -23,10 +30,16 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
-    private Integer[] imgs = {R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher, R.mipmap.ic_launcher};
-    private String[] texts = {"会员管理", "新增会员", "快速消费", "会员充值", "商品管理", "加减积分",
-            "商品消费", "会员冲次", "礼品管理", "积分管理", "计次消费", "更多功能"};
+    private Integer[] imgs = {R.mipmap.pic_main_banner, R.mipmap.pic_main_banner, R.mipmap.pic_main_banner};
+
+    private Integer[] mainImg = {R.mipmap.pic_main_pay, R.mipmap.pic_main_score, R.mipmap.pic_main_member,
+            R.mipmap.pic_main_notice, R.mipmap.pic_main_goods, R.mipmap.pic_main_order, R.mipmap.pic_main_present, R.mipmap.pic_convert,
+            R.mipmap.pic_main_collect, R.mipmap.pic_main_coupon, R.mipmap.pic_main_activity};
+    private String[] mainText = {"充值管理 ", "积分管理", "会员管理", "会员通知 ", "商品管理", "商品订单",
+            "礼品管理", "兑换订单", "扫码收账", "卡券管理", "活动营销"};
+    private Integer[] leftImg = {R.mipmap.ic_main_left_website, R.mipmap.ic_main_left_shore, R.mipmap.ic_main_left_score,
+            R.mipmap.ic_main_left_share, R.mipmap.ic_main_left_set, R.mipmap.ic_main_left_about, R.mipmap.ic_main_left_exit};
+    private String[] leftStr = {"微官网", "自营商城", "积分兑换", "好友分享", "系统设置", "关于我们", "退出登录"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         initBanner();
 
         initRV();
+
+        initLeftList();
     }
 
     private void initToolbar(Toolbar toolbar) {
@@ -75,12 +90,30 @@ public class MainActivity extends AppCompatActivity {
         rv.setAdapter(new SuperAdapter<>(getList(), MainHolder.class));
     }
 
+    private void initLeftList() {
+        LinearLayout list = findViewById(R.id.main_left_list);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        for (int i = 0; i < leftStr.length; i++) {
+            if (i == 3) {
+                View divider = new View(this);
+                divider.setBackgroundColor(0xfff0f0f0);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-1, getDimension(2));
+                lp.topMargin = getDimension(8);
+                lp.bottomMargin = getDimension(8);
+                divider.setLayoutParams(lp);
+                list.addView(divider);
+            }
+            View view = inflater.inflate(R.layout.item_main_left, list, false);
+            ((ImageView) view.findViewById(R.id.item_main_img)).setImageResource(leftImg[i]);
+            ((TextView) view.findViewById(R.id.item_main_text)).setText(leftStr[i]);
+            list.addView(view);
+        }
+    }
+
     private List<MainBean> getList() {
         List<MainBean> list = new ArrayList<>();
-        for (int i = 0; i < 12; i++) {
-
-            MainBean bean = new MainBean();
-            bean.setText(texts[i]);
+        for (int i = 0; i < mainText.length; i++) {
+            MainBean bean = new MainBean(mainImg[i], mainText[i]);
             list.add(bean);
         }
         return list;
@@ -90,6 +123,23 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_scan_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.main_scan) {
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 转换获取dp值
+     */
+    private int getDimension(float dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
+                getResources().getDisplayMetrics());
     }
 }
 

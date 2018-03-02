@@ -8,4 +8,6 @@
     <color name="loginCenter">#009688</color>
     <color name="loginEnd">#00b7a6</color>
 
+    <color name="line_bg">#F0F0F0</color>
+
 </resources>
