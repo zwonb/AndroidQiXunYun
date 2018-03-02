@@ -28,6 +28,19 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
+                android:id="@+id/main_left_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="企讯云商户"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/main_left_img"/>
+
+            <TextView
                 android:id="@+id/main_left_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,7 +51,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/main_left_img"/>
+                app:layout_constraintTop_toBottomOf="@+id/main_left_name"/>
 
             <ImageView
                 android:layout_width="32dp"

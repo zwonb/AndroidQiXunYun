@@ -1,5 +1,6 @@
 package org.qixunyun.qixunyun;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -16,7 +17,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.youth.banner.Banner;
 
 import org.qixunyun.qixunyun.bean.MainBean;
@@ -98,7 +102,9 @@ public class MainActivity extends AppCompatActivity {
                 View divider = new View(this);
                 divider.setBackgroundColor(0xfff0f0f0);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-1, getDimension(2));
+                lp.leftMargin = getDimension(8);
                 lp.topMargin = getDimension(8);
+                lp.rightMargin = getDimension(8);
                 lp.bottomMargin = getDimension(8);
                 divider.setLayoutParams(lp);
                 list.addView(divider);
@@ -128,10 +134,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.main_scan) {
-
+            Intent scan = new Intent(this, CaptureActivity.class);
+            startActivityForResult(scan, RequestCode.CODE1);
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RequestCode.CODE1 && data != null) {
+            //处理扫描结果（在界面上显示）
+            Bundle bundle = data.getExtras();
+            if (bundle == null) {
+                return;
+            }
+            if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                String result = bundle.getString(CodeUtils.RESULT_STRING);
+                Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
+            } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                Toast.makeText(MainActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     /**

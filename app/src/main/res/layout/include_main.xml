@@ -13,8 +13,14 @@
         android:layout_height="140dp"
         tools:background="@mipmap/pic_main_banner"/>
 
-    <include
-        layout="@layout/divider_view_vertical"/>
+    <TextView
+        android:textSize="15sp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/line_bg"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:text="常用功能列表"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/main_recycler_view"
