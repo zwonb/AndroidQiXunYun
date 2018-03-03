@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="16dp"
+    android:background="?attr/selectableItemBackground"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/item_member_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/ic_launcher_round"/>
+
+    <TextView
+        android:id="@+id/item_member_name"
+        style="@style/text16"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/item_member_sex"
+        app:layout_constraintStart_toEndOf="@+id/item_member_img"
+        app:layout_constraintTop_toTopOf="@+id/item_member_img"
+        tools:text="张三"/>
+
+    <TextView
+        android:id="@+id/item_member_sex"
+        style="@style/text16"
+        app:layout_constraintBottom_toBottomOf="@+id/item_member_img"
+        app:layout_constraintStart_toStartOf="@+id/item_member_name"
+        app:layout_constraintTop_toBottomOf="@+id/item_member_name"
+        tools:text="男"/>
+
+    <ImageView
+        android:id="@+id/item_member_more"
+        style="@style/moreImg"
+        android:tint="@color/text333"
+        app:layout_constraintBottom_toBottomOf="@+id/item_member_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_member_img"/>
+
+</android.support.constraint.ConstraintLayout>

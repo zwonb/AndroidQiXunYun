@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/item_search_img"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:src="@mipmap/ic_launcher_round"
+        app:layout_constraintBottom_toBottomOf="@+id/item_search_edit"
+        app:layout_constraintStart_toStartOf="@+id/item_search_edit"
+        app:layout_constraintTop_toTopOf="@+id/item_search_edit"/>
+
+    <EditText
+        android:id="@+id/item_search_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="center_vertical"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:paddingEnd="48dp"
+        android:paddingStart="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="张三"/>
+
+    <ImageView
+        android:id="@+id/item_search_delete"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/item_search_edit"
+        app:layout_constraintRight_toRightOf="@+id/item_search_edit"
+        app:layout_constraintTop_toTopOf="@+id/item_search_edit"
+        app:srcCompat="@android:drawable/ic_delete"/>
+
+
+</android.support.constraint.ConstraintLayout>

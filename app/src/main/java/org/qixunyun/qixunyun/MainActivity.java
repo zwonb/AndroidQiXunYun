@@ -25,7 +25,9 @@ import com.youth.banner.Banner;
 
 import org.qixunyun.qixunyun.bean.MainBean;
 import org.qixunyun.qixunyun.holder.MainHolder;
+import org.qixunyun.qixunyun.home.member.MemberUIA;
 import org.qixunyun.qixunyun.recyclerview.SuperAdapter;
+import org.qixunyun.qixunyun.recyclerview.SuperViewHolder;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -91,7 +93,19 @@ public class MainActivity extends AppCompatActivity {
     private void initRV() {
         RecyclerView rv = findViewById(R.id.main_recycler_view);
         rv.setLayoutManager(new GridLayoutManager(this, 4));
-        rv.setAdapter(new SuperAdapter<>(getList(), MainHolder.class));
+        SuperAdapter<MainBean, SuperViewHolder<MainBean>> adapter = new SuperAdapter<>
+                (getList(), MainHolder.class);
+        rv.setAdapter(adapter);
+        adapter.setOnItemClickListener(new SuperAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(SuperAdapter adapter, View view, int position) {
+                switch (position) {
+                    case 2:
+                        startActivity(new Intent(MainActivity.this, MemberUIA.class));
+                        break;
+                }
+            }
+        });
     }
 
     private void initLeftList() {

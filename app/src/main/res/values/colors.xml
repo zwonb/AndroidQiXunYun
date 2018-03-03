@@ -10,4 +10,7 @@
 
     <color name="line_bg">#F0F0F0</color>
 
+    <color name="text333">#333333</color>
+    <color name="text666">#666666</color>
+    <color name="text999">#999999</color>
 </resources>
