@@ -27,7 +27,7 @@ class MemberUIA : AppCompatActivity() {
     private val list: List<MemberBean>
         get() {
             val list = ArrayList<MemberBean>()
-            for (i in 0..30) {
+            for (i in 0..10) {
                 val bean = MemberBean("", "张三", "男")
                 list.add(bean)
             }
